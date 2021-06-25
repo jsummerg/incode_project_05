@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "create-database": "psql -U postgres -h localhost -f sql/create-database.sql",
-    "create-tables": "psql -U postgres -h localhost -d blankdatabase -f sql/create-tables.sql",
-    "seed-tables": "psql -U postgres -h localhost -d blankdatabase -f sql/seed-tables.sql",
+    "create-tables": "psql -U postgres -h localhost -d movieusers -f sql/create-tables.sql",
+    "seed-tables": "psql -U postgres -h localhost -d movieusers -f sql/seed-tables.sql",
     "dev": "nodemon -r dotenv/config index.js"
   },
   "author": "",

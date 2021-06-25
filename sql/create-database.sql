@@ -1,1 +1,1 @@
-CREATE DATABASE blankdatabase
+CREATE DATABASE movieusers

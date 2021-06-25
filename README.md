@@ -1,17 +1,10 @@
-# Blank Project
+# Project 5
 
 ## INSTALLATION
 ```
 npm install
 ```
 - Copy .env.template and turn it into an .env file, then input variables
-- Change database name in create-database.sql
-- Change database.js file to include the new database name
-    - Eg. const database = 'blankdatabase'
-    - Replace "blankdatabase" with new database name
-- Change package.json file all scripts with -d to include the new database name
-    - Eg. "seed-tables": "psql -U postgres -h localhost -d blankdatabase -f sql/seed-tables.sql"
-    - Replace "blankdatabase" with new database name
 - Run commands to create database and fill the tables
 - Sign up and create a new user to login
 
