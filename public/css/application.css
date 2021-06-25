@@ -1,0 +1,94 @@
+/* GLOBAL PROPERTIES */
+*, *::after, *::before { /* Makes math easier if everything is at 0 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif; /* Sets the default font of the entire html */
+}
+
+main {
+    margin: 0 5% 5% 5%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between; /* Splits the nav div's to be on each side */
+}
+
+.flex.evenly {
+    justify-content: space-evenly;
+}
+
+#tableHeading {
+    background-color: #6a7b8b;
+    color: white;
+}
+
+th, td {
+    padding: 10px 10px;
+}
+
+/* HEADER */
+
+header {
+    background-color: #6a7b8b;
+    color: white;
+    
+}
+
+header > h1 {
+    margin: 1% 5%;
+}
+
+nav {
+    margin: 20px;
+}
+
+nav > a {
+    margin: 0px 10px;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #6a7b8b;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+}
+
+/* FORM STYLE */
+
+label, input {
+    font-weight: bold;
+    display: block;
+    margin: 5px 5px;
+}
+
+input {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    background-color: #c4cad0;
+}
+
+button {
+    margin: 20px 0;
+    background-color: #6a7b8b;
+    color: white;
+    text-decoration: solid;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+/* Home Page Table */
+
+#hometable {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2% 0%;
+}

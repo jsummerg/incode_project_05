@@ -1,0 +1,22 @@
+<div>
+    <h2>Login</h2>
+    <p>Enter your email and password</p>
+</div>
+
+<form action='/login' method='POST'>
+    <div>
+        <label for='email'>Email:</label>
+        <input id='email' name='email' type='email'>
+    </div>
+    <div>
+        <label for='password'>Password:</label>
+        <input id='password' name='password' type='password'>
+    </div>
+    <% if(message) { %>
+    <p style='color:red'><%= message %></p>
+    <% } %>
+    <button type='submit'>Login</button>
+</form>
+<h2>Don't have an account?</h2>
+<button><a href='/signup'>Sign Up</a></button>
+

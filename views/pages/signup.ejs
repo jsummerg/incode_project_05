@@ -1,0 +1,38 @@
+<script src="formhandler.js"></script>
+<div>
+    <h2>Create Account</h2>
+    <p>Complete the form below to add a new user to the database. All fields are required.</p>
+</div>
+
+<div class="formContainer">
+    <form id='signupForm' action='/signup' method='POST'>
+        <div>
+            <label for='name'>First Name:</label>
+            <input id='name' name='name' type='text'>
+        </div>
+        <div>
+            <label for='surname'>Surname:</label>
+            <input id='surname' name='surname' type='text'>
+        </div>
+        <div>
+            <label for='email'>Email:</label>
+            <input id='email' name='email' type='email'>
+        </div>
+        <div>
+            <label for='password'>Password:</label>
+            <input id='password' name='password' type='password'>
+        </div>
+        <div>
+            <label for='confirmPassword'>Confirm Password:</label>
+            <input id='confirmPassword' name='confirmPassword' type='password'>
+        </div>
+        <div>
+            <% if(message) { %>
+                <p style='color: red'><%= message %></p>
+            <% } %>    
+        </div>
+        <button type='submit'>Sign Up</button>
+    </form>
+    <h2>Already have an account?</h2>
+    <button><a href='/login'>Log In</a></button>
+</div>
