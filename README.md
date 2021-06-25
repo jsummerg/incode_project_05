@@ -20,6 +20,7 @@ npm install
     })
     ```
 - Routes defined in index.js file
+    - Error route must always be the last route or can cause bugs
 
 ## Commands
 ```
