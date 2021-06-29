@@ -8,11 +8,11 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL
 );
 
-DROP TABLE IF EXISTS rating;
+DROP TABLE IF EXISTS ratings;
 
 CREATE TABLE IF NOT EXISTS ratings (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users (user_id),
     movie_id INT NOT NULL,
-    rating NOT NULL CHECK (rating >= 1 and rating <=10)
+    rating INT NOT NULL CHECK (rating >= 1 and rating <=10)
 );
