@@ -26,6 +26,9 @@ $.getJSON('/api/popular-movies', function(data) {
 
 // Show the MOVIE VIDEO (from youtube or vimeo) at class ".movieVideo". 
 // Need to define the "movie_id"?
+const tmdb_base_url = 'https://api.themoviedb.org/3'
+const api_query = `?api_key=b5e1ec0ad8957e083cf7e7b4d3605c9e`
+
 $.getJSON(`${tmdb_base_url}/movie/${movie_id}/videos${api_query}&language=en-US`, function (data) {
   let video_URL = "";
   if (data.results[0].site === "YouTube") {
