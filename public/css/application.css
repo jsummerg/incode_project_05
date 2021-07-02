@@ -3,62 +3,92 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif; /* Sets the default font of the entire html */
 }
 
 main {
     margin: 0 5% 5% 5%;
 }
 
-.flex {
-    display: flex;
-}
-
-.flex.space-between {
-    justify-content: space-between; /* Splits the nav div's to be on each side */
-}
-
-.flex.evenly {
-    justify-content: space-evenly;
-}
-
-#tableHeading {
-    background-color: #6a7b8b;
-    color: white;
-}
-
-th, td {
-    padding: 10px 10px;
+body {
+    background-color: #F8F1F1;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* HEADER */
 
 header {
-    background-color: #6a7b8b;
-    color: white;
-    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #16697A;
+    color: #F8F1F1;
+    margin: 0% 2% 2% 2%;
+    border-bottom: 10px solid #DB6400;
 }
 
-header > h1 {
-    margin: 1% 5%;
+#headerLogo {
+    display: block;
+    height: 50%;
+    width: auto;
 }
 
-nav {
-    margin: 20px;
-}
 
-nav > a {
-    margin: 0px 10px;
-}
 
 /* FOOTER */
 
 footer {
-    background-color: #6a7b8b;
-    color: white;
-    padding: 5px 5px;
+    background-color: #16697A;
+    color: #F8F1F1;
+    margin: 2% 2% 0% 2%;
+    border-top: 10px solid #DB6400;
     text-align: center;
 }
+
+/*LINK STYLING */
+
+a {
+    font-size: 40px;
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a:link {
+    color: #FFA62B;
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a:visited {
+    color: #FFA62B;
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a:hover {
+    color: #DB6400;
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a:active {
+    color: #F8F1F1;
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: -100%;
+    left: 0;
+    font-size: 20px;
+  }
+
 
 /* FORM STYLE */
 

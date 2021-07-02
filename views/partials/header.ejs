@@ -1,9 +1,17 @@
-<h1>Website Header</h1>
+<div id="logoHeader">
+    <img src="/assets/movieDBLogo.png" alt="Logo" id="headerLogo">
+</div>
+<div id="titleHeader">
+<h1>TBMD - The Big Movie Database</h1>
+</div>
+<div id="navHeader">
 <nav>
-    <a href="/">Home</a>
+    <a href="/" title="HOME"><i class="fas fa-home"></i></a>
     <% if (req.session.user_id) { %>
-        <a href="/logout">Logout</a>
+        <a href="/logout" title="LOGOUT"><i class="fas fa-sign-out-alt"></i></a>
     <% } else { %>
-        <a href="/login">Log in</a>
+        <a href="/signup" title="SIGN UP"><i class="fas fa-user-plus"></i></a>
+        <a href="/login" title="SIGN IN"><i class="fas fa-sign-in-alt"></i></a>
     <% } %>
 </nav>
+</div>
