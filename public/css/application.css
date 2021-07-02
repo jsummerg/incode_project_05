@@ -144,3 +144,75 @@ button {
     margin-top: 0px !important;
     margin-bottom: 10px !important;
 }
+
+/* Search Bar */
+.search-bar{
+background: #fff;
+border-radius: 5px;
+position: relative;
+box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+}
+.search-select{
+background: #fff;
+height: 40px; 
+outline: none;
+border: none;
+border-radius: 5px;
+padding: 0 60px 0 20px;
+font-size: 14px;
+box-shadow: 0px 1px 5px rgba(0,0,0,0.12);
+}
+.search-bar input{
+height: 40px; 
+width: 50%;
+outline: none;
+border: none;
+border-radius: 5px;
+padding: 0 60px 0 20px;
+font-size: 14px;
+box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+}
+.search-bar.active input{
+border-radius: 5px 5px 0 0;
+background-color: #fff;
+}
+.search-bar .search-result{
+padding: 0;
+opacity: 0;
+pointer-events: none;
+max-height: 280px;
+overflow-y: auto;
+}
+.search-bar.active .search-result{
+padding: 10px 8px;
+opacity: 1;
+pointer-events: auto;
+
+}
+.search-result li{
+list-style: none;
+padding: 8px 12px;
+display: none;
+width: 100%;
+cursor: default;
+border-radius: 3px;
+color: #000;
+}
+.search-bar.active .search-result li{
+display: block;
+}
+.search-result li:hover{
+background: #efefef;
+}
+.search-bar .icon{
+position: absolute;
+right: 0px;
+top: 0px;
+height: 40px;
+width: 40px;
+text-align: center;
+line-height: 40px;
+font-size: 20px;
+color: #16697A;
+cursor: pointer;
+}
