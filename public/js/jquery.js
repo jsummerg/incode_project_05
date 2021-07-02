@@ -26,7 +26,8 @@ $.getJSON(`${tmdb_base_url}/discover/movie${api_query}`, function(data) {
 });
 
 
-// show the movie video (from youtube or vimeo) at class ".movieVideo". // Need to define the "movie_id"?
+// show the movie video (from youtube or vimeo) at class ".movieVideo". 
+// Need to define the "movie_id"?
 $.getJSON(`${tmdb_base_url}/movie/${movie_id}/videos${api_query}&language=en-US`, function (data) {
     let video_URL = "";
     if (data.results[0].site === "YouTube") {
