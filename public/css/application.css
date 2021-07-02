@@ -92,5 +92,9 @@ button {
 /* Home Page Table */
 
 .poster {
+    border: 10px;
+}
+
+.movieCard {
     margin: 10px;
 }
