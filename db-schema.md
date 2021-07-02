@@ -13,5 +13,5 @@ Field | Type | Description
 ------|------|---------------
 id | SERIAL PRIMARY KEY | The rating's unique ID
 user_id | INTEGER REFERENCES users (user_id) | the user's unique id number accessed from the user table
-movie_id | INT NOT NULL | The movie's unique ID
+movie_id | INT NOT NULL | The movie's unique ID (corresponding to the TMDB ID)
 rating | NOT NULL CHECK (rating >= 1 and rating <=10) | The movie's rating
