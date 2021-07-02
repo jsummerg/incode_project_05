@@ -22,3 +22,19 @@ $.getJSON('/api/popular-movies', function(data) {
 
 // ratings = Our rating database
 // users = Our user database
+
+
+// Show the MOVIE VIDEO (from youtube or vimeo) at class ".movieVideo". 
+// Need to define the "movie_id"?
+$.getJSON(`${tmdb_base_url}/movie/${movie_id}/videos${api_query}&language=en-US`, function (data) {
+  let video_URL = "";
+  if (data.results[0].site === "YouTube") {
+    video_URL = `https://www.youtube.com/embed/${data.results[0].key}`;
+  } else if (data.results[0].site === "Vimeo") {
+    video_URL = `https://vimeo.com/${data.results[0].key}`;
+  }
+  $(".movieVideo").attr("src", video_URL);
+})
+.catch((err) => {
+  return res.send(err.message)
+});
