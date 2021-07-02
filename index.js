@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
+const axios = require('axios')
 const app = express()
 
 
@@ -39,17 +40,22 @@ app.use(session({
     saveUninitialized: false,
 }))
 
+// Axios
+axios.defaults.baseURL = 'https://api.themoviedb.org/3'
+
 // Routes
 const homeRouter = require('./routes/home')
 const loginRouter = require('./routes/login')
 const signupRouter = require('./routes/signup')
 const logoutRouter = require('./routes/logout')
+const apiRouter = require('./routes/api/popularMovies')
 const errorRouter = require('./routes/error')
 
 app.use('/', homeRouter)
 app.use('/login', loginRouter)
 app.use('/logout', logoutRouter)
 app.use('/signup', signupRouter)
+app.use('/popular-movies', apiRouter)
 app.use('*', errorRouter)
 
 // PORT
