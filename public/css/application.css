@@ -34,7 +34,6 @@ header {
     justify-content: space-evenly;
     background-color: #16697A;
     color: #F8F1F1;
-    margin: 0% 2% 2% 2%;
     border-bottom: 10px solid #DB6400;
 }
 
@@ -51,49 +50,59 @@ header {
 footer {
     background-color: #16697A;
     color: #F8F1F1;
-    margin: 2% 2% 0% 2%;
     border-top: 10px solid #DB6400;
     text-align: center;
+    padding: 2% 0% 0% 0%;
 }
 
+#socials {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+
+}
+
+footer i {
+    padding: 2% 2%;
+}
 /*LINK STYLING */
 
-a {
+header a {
     font-size: 40px;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:link {
+header a:link {
     color: #FFA62B;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:visited {
+header a:visited {
     color: #FFA62B;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:hover {
+header a:hover {
     color: #DB6400;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:active {
+header a:active {
     color: #F8F1F1;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a[title]:hover::after {
+header a[title]:hover::after {
     content: attr(title);
     position: absolute;
     top: -100%;
