@@ -5,7 +5,6 @@ const votesSum = 0
 
 // dynamically add 20 most popular movie posters to #movies
 $.getJSON('/api/popular-movies', function(data) {
-  // console.log(data.results)
   data.results.forEach(movie => {
     const posterImage = movie.poster_path
     const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`
@@ -17,8 +16,6 @@ $.getJSON('/api/popular-movies', function(data) {
     .append($('<div class="info flex space-between">').append(movieRating).append(movieVotes))) // Puts the rating score and count in a div blow the title
   })
 })
-
-// .append($('<div class="info">').append($(movieTitle)).append(movieRating).append(movieVotes)))
 
 // ratings = Our rating database
 // users = Our user database
