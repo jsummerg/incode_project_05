@@ -29,8 +29,7 @@ $.getJSON('/api/popular-movies', function(data) {
 const tmdb_base_url = 'https://api.themoviedb.org/3'
 const api_query = `?api_key=b5e1ec0ad8957e083cf7e7b4d3605c9e`
 
-// should be changed after to ${movieId} in the place of "550". This is for testing at home page.
-$.getJSON(`${tmdb_base_url}/movie/550/videos${api_query}&language=en-US`, function (data) {
+$.getJSON('/api/videos', function (data) {
   let video_URL = "";
   if (data.results[0].site === "YouTube") {
     video_URL = `https://www.youtube.com/embed/${data.results[0].key}`;
