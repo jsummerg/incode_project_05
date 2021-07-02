@@ -1,5 +1,9 @@
 <h1>Website Header</h1>
 <nav>
     <a href="/">Home</a>
-    <a href="/logout">Logout</a>
+    <% if (req.session.user_id) { %>
+        <a href="/logout">Logout</a>
+    <% } else { %>
+        <a href="/login">Log in</a>
+    <% } %>
 </nav>
