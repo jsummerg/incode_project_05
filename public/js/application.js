@@ -47,20 +47,32 @@ function searchMovies(movieName, genreFilter) {
             }        
         })
     }
+    else {
+        $('.search-bar').removeClass("active");
+    }
 }
 
 function displaySearchResults(movieList, genreFilter) {
-    movieList.results.forEach(movie => {
-        console.log(movie.original_title+' '+movie.genre_ids)
-        if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {            
-            let html = '<li class="list-group-item">'
-            if (movie.poster_path != null) {
-                html += '<img src="'+api_img_path+movie.poster_path+'" heigth="75" width="50" class="img-thumbnail" />'
+    if (movieList.results.length > 0){
+        $('.search-bar').addClass("active");
+        movieList.results.forEach(movie => {
+            //console.log(movie.original_title+' '+movie.genre_ids)
+            if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {            
+                let html = '<li onclick="selectMovie(this);">'
+                if (movie.poster_path != null) {
+                    html += '<img src="'+api_img_path+movie.poster_path+'" heigth="75" width="50" class="img-thumbnail" />'
+                }
+                html += movie.original_title+'&nbsp;('+isNull(movie.release_date,'?').substring(0,4)+')</li>'
+                $('#searchResult').append(html)        
             }
-            html += movie.original_title+'&nbsp;('+isNull(movie.release_date,'?').substring(0,4)+')</li>'
-            $('#searchResult').append(html)        
-        }
-    })    
+        })    
+    }    
+}
+
+function selectMovie(element) {
+    console.log($(element).text())
+    $('#searchBar').val($(element).text())
+    $('.search-bar').removeClass("active");
 }
 
 function isNull(strValue, strReplace) {    
@@ -68,3 +80,4 @@ function isNull(strValue, strReplace) {
         return strReplace
     else return strValue
 }
+
