@@ -48,14 +48,14 @@ const homeRouter = require('./routes/home')
 const loginRouter = require('./routes/login')
 const signupRouter = require('./routes/signup')
 const logoutRouter = require('./routes/logout')
-const apiRouter = require('./routes/api/popularMovies')
+const apiRouter = require('./routes/api')
 const errorRouter = require('./routes/error')
 
 app.use('/', homeRouter)
 app.use('/login', loginRouter)
 app.use('/logout', logoutRouter)
 app.use('/signup', signupRouter)
-app.use('/popular-movies', apiRouter)
+app.use('/api', apiRouter)
 app.use('*', errorRouter)
 
 // PORT
