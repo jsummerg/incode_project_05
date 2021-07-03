@@ -24,7 +24,7 @@ $.getJSON('/api/popular-movies', function(data) {
 
 
 // Show the MOVIE VIDEO (from youtube or vimeo) at class ".movieVideo". 
-
+let movieId = window.location.href.replace('http://localhost:3000/movies/','')
 
 $.getJSON(`${tmdb_base_url}/movie/${movieId}/videos${api_query}&language=en-US`, function (data) {
 //   console.log(req.params.id)
