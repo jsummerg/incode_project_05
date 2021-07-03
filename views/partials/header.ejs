@@ -3,13 +3,14 @@
 </div>
 <div id="titleHeader">
 <h1>TBMD - The Big Movie Database</h1>
-<div class="search-bar"> 
+<div class="search-bar">
+    <input type="hidden" name="movieId" id="movieId" value="">
     <select class="search-select" id="genreSearchFilter">
       <option value="0">All Genres</option>
     </select> 
     <input type="text" placeholder="Search" name="searchBar" id="searchBar">
     <div class="search-result" id="searchResult" name="searchResult"></div>              
-    <div class="icon"><i class="fas fa-search"></i></div>
+    <div class="icon" id="searchIcon"><i class="fas fa-search"></i></div>
   </div>
 </div>
 
