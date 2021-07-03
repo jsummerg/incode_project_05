@@ -59,7 +59,7 @@ app.use('/logout', logoutRouter)
 app.use('/signup', signupRouter)
 app.use('/api', apiRouter)
 app.use('/movies', detailsRouter)
-app.use('/movies/:movie_id', movieDetailsRouter)
+app.use('/movies/:movieId', movieDetailsRouter)
 app.use('*', errorRouter)
 
 // PORT
