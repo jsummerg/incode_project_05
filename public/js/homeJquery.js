@@ -27,15 +27,15 @@ $.getJSON('/api/popular-movies', function(data) {
 
 
 // Show the MOVIE VIDEO (from youtube or vimeo) at class ".movieVideo". 
-let movieId = window.location.href.replace('http://localhost:3000/movies/','')
+let movieId = window.location.href.replace('http://localhost:3000/movies/','') // Find the movie_id at href
 
 $.getJSON(`${tmdb_base_url}/movie/${movieId}/videos${api_query}&language=en-US`, function (data) {
-//   console.log(req.params.id)
-// console.log(movieId)
 let video_URL = "";
-  if (data.results[0].site === "YouTube") {
+  if (data.results[0]?.site == undefined) { //If there's no videos in the results, it will load this instead of giving a error (example: http://localhost:3000/movies/385687).
+    video_URL = `https://www.comingsoon.net/assets/uploads/2019/02/trailer1.jpg`; 
+  } else if (data.results[0]?.site === "YouTube") {
     video_URL = `https://www.youtube.com/embed/${data.results[0].key}`;
-  } else if (data.results[0].site === "Vimeo") {
+  } else if (data.results[0]?.site === "Vimeo") {
     video_URL = `https://vimeo.com/${data.results[0].key}`;
   }
   $(".movieVideo").attr("src", video_URL);

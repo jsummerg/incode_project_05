@@ -51,7 +51,6 @@ const logoutRouter = require('./routes/logout')
 const apiRouter = require('./routes/api')
 const errorRouter = require('./routes/error')
 const detailsRouter = require('./routes/details')
-const movieDetailsRouter = require('./routes/details')
 
 app.use('/', homeRouter)
 app.use('/login', loginRouter)
@@ -59,7 +58,6 @@ app.use('/logout', logoutRouter)
 app.use('/signup', signupRouter)
 app.use('/api', apiRouter)
 app.use('/movies', detailsRouter)
-app.use('/movies/:movieId', movieDetailsRouter)
 app.use('*', errorRouter)
 
 // PORT
