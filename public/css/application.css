@@ -34,9 +34,10 @@ header {
     justify-content: space-evenly;
     background-color: #16697A;
     color: #F8F1F1;
-    margin: 0% 2% 2% 2%;
     border-bottom: 10px solid #DB6400;
+    padding: 0 5% 0 5%;
 }
+
 
 #headerLogo {
     display: block;
@@ -51,49 +52,59 @@ header {
 footer {
     background-color: #16697A;
     color: #F8F1F1;
-    margin: 2% 2% 0% 2%;
     border-top: 10px solid #DB6400;
     text-align: center;
+    padding: 2% 0% 0% 0%;
 }
 
+#socials {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+
+}
+
+footer i {
+    padding: 2% 2%;
+}
 /*LINK STYLING */
 
-a {
+header a {
     font-size: 40px;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:link {
+header a:link {
     color: #FFA62B;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:visited {
+header a:visited {
     color: #FFA62B;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:hover {
+header a:hover {
     color: #DB6400;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a:active {
+header a:active {
     color: #F8F1F1;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-a[title]:hover::after {
+header a[title]:hover::after {
     content: attr(title);
     position: absolute;
     top: -100%;
@@ -147,13 +158,13 @@ button {
 
 /* Search Bar */
 .search-bar{
-background: #fff;
+background: #16697A;
 border-radius: 5px;
 position: relative;
-box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+margin: 5% 5%;
 }
 .search-select{
-background: #fff;
+background: #F8F1F1;
 height: 40px; 
 outline: none;
 border: none;
@@ -164,21 +175,22 @@ box-shadow: 0px 1px 5px rgba(0,0,0,0.12);
 }
 .search-bar input{
 height: 40px; 
-width: 50%;
+width: 90%;
 outline: none;
 border: none;
 border-radius: 5px;
-padding: 0 60px 0 20px;
+margin: 1% 1% 1% 0%;
 font-size: 14px;
 box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
 }
 .search-bar.active input{
 border-radius: 5px 5px 0 0;
-background-color: #fff;
+background-color: #F8F1F1;
 }
 .search-bar .search-result{
+position: absolute;
 padding: 0;
-opacity: 0;
+background-color: #F8F1F1;
 pointer-events: none;
 max-height: 280px;
 overflow-y: auto;
@@ -202,17 +214,15 @@ color: #000;
 display: block;
 }
 .search-result li:hover{
-background: #efefef;
+background: #DB6400;
 }
 .search-bar .icon{
 position: absolute;
-right: 0px;
-top: 0px;
-height: 40px;
-width: 40px;
-text-align: center;
-line-height: 40px;
-font-size: 20px;
-color: #16697A;
+right: 2%;
+top: 5%;
+/* text-align: center; */
+line-height: 0px;
+font-size: 40px;
+color: #FFA62B;
 cursor: pointer;
 }
