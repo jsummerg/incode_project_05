@@ -74,7 +74,7 @@ function displaySearchResults(movieList, genreFilter) {
 }
 
 function selectMovie(element) {
-    console.log($(element).text())
+    //console.log($(element).text())
     $('#searchBar').val($(element).text())
     $('#movieId').val($(element).val())
     $('.search-bar').removeClass("active");
