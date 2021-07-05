@@ -13,7 +13,7 @@ $(document).ready(function() {
     })
     
     $("#searchIcon").click(function() {
-        window.location.href = '/movie/'+$('#movieId').val()
+        window.location.href = '/movies/'+$('#movieId').val()
     })
 
     getGenres()
