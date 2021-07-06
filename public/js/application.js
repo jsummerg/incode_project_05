@@ -3,6 +3,8 @@ const api_key = '1a36dc53a72920430421fa20480bb680'
 const api_img_path = 'https://image.tmdb.org/t/p/w500/'
 
 $(document).ready(function() {
+    getGenres($('#genreSearchFilter'))
+    getGenres($('#genreHomeFilter'))
 
     $('#searchBar').keyup(function() {
         searchMovies($('#searchBar').val(), $('#genreSearchFilter').val())
@@ -15,24 +17,25 @@ $(document).ready(function() {
     $("#searchIcon").click(function() {
         window.location.href = '/movies/'+$('#movieId').val()
     })
-
-    getGenres()
+    
+    
 })
 
-function getGenres() {
+function getGenres(element) {
     $.ajax({
         url: api_endpoint+'/genre/movie/list?',
         method: 'get',
         data: {api_key: api_key},
         dataType: 'json',
         success: function(genreList) {
-            displayGenreList(genreList)}
+            displayGenreList(genreList, element)
+        }
     })
 }
 
-function displayGenreList(genreList) {
+function displayGenreList(genreList, element) {
     genreList.genres.forEach(genre => {
-        $('#genreSearchFilter').append('<option value="'+genre.id+'">'+genre.name+'</option></option>')
+        $(element).append('<option value="'+genre.id+'">'+genre.name+'</option></option>')
     })
 }
 
