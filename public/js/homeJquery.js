@@ -26,7 +26,7 @@ function getPopularMovies() {
         const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
         const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
         const movieRating = `<p>Rating: ${avgMovieRating}</p>`;
-        const movieVotes = `<p>Number of votes: ${votesSum}</p>`;
+        const movieVotes = `<p>Votes: ${votesSum}</p>`;
         const movieCard = $(`<div class='movieCard' value='${movie.id}'>`).append(
           moviePoster
         );
@@ -60,13 +60,14 @@ function getTrailer() {
   $.getJSON(`/api/videos/${movieId}`,
     function (data) {
       let video_URL = "";
-      if (data.results[0]?.site == undefined) {
+      const i = Math.floor(Math.random() * 20)
+      if (data.results[i]?.site == undefined) {
         //If there's no videos in the results, it will load this instead of giving a error (example: http://localhost:3000/movies/385687).
         video_URL = `https://www.comingsoon.net/assets/uploads/2019/02/trailer1.jpg`;
-      } else if (data.results[0]?.site === "YouTube") {
-        video_URL = `https://www.youtube.com/embed/${data.results[0].key}`;
-      } else if (data.results[0]?.site === "Vimeo") {
-        video_URL = `https://vimeo.com/${data.results[0].key}`;
+      } else if (data.results[i]?.site === "YouTube") {
+        video_URL = `https://www.youtube.com/embed/${data.results[i].key}`;
+      } else if (data.results[i]?.site === "Vimeo") {
+        video_URL = `https://vimeo.com/${data.results[i].key}`;
       }
       $(".movieVideo").attr("src", video_URL);
     }
