@@ -58,13 +58,13 @@ function getTrailer() {
     function (data) {
       let video_URL = "";
       const i = Math.floor(Math.random() * 20)
-      if (data.results[i]?.site == undefined) {
+      if (data.results[0]?.site == undefined) {
         //If there's no videos in the results, it will load this instead of giving a error (example: http://localhost:3000/movies/385687).
         video_URL = `https://www.comingsoon.net/assets/uploads/2019/02/trailer1.jpg`;
-      } else if (data.results[i]?.site === "YouTube") {
-        video_URL = `https://www.youtube.com/embed/${data.results[i].key}`;
-      } else if (data.results[i]?.site === "Vimeo") {
-        video_URL = `https://vimeo.com/${data.results[i].key}`;
+      } else if (data.results[0]?.site === "YouTube") {
+        video_URL = `https://www.youtube.com/embed/${data.results[0].key}`;
+      } else if (data.results[0]?.site === "Vimeo") {
+        video_URL = `https://vimeo.com/${data.results[0].key}`;
       }
       $(".movieVideo").attr("src", video_URL);
     }
