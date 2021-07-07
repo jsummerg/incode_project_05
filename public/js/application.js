@@ -63,7 +63,6 @@ function displaySearchResults(movieList, genreFilter) {
     if (movieList.results.length > 0){
         $('.search-bar').addClass("active");
         movieList.results.forEach(movie => {
-            //console.log(movie)
             if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {            
                 let html = '<li value="'+movie.id+'" onclick="selectMovie(this);">'
                 if (movie.poster_path != null) {
@@ -77,7 +76,6 @@ function displaySearchResults(movieList, genreFilter) {
 }
 
 function selectMovie(element) {
-    //console.log($(element).text())
     $('#searchBar').val($(element).text())
     $('#movieId').val($(element).val())
     $('.search-bar').removeClass("active");

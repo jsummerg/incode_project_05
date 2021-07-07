@@ -58,9 +58,9 @@ body {
 		transparent)
 }
 
-/* .flex.space-between {
-    justify-content: space-evenly; /* Splits the nav div's to be on each side 
-} */
+.flex.space-between {
+    justify-content: space-between; /* Splits the nav div's to be on each side */
+}
 
 /* HEADER */
 
