@@ -58,9 +58,8 @@ function getTrailer() {
     "http://localhost:3000/movies/",
     ""
   ); // Find the movie_id at href
-
-  $.getJSON(
-    `${tmdb_base_url}/movie/${movieId}/videos${api_query}&language=en-US`,
+    console.log("frontend: "+movieId)
+  $.getJSON(`/api/videos/${movieId}`,
     function (data) {
       let video_URL = "";
       const i = Math.floor(Math.random() * 20)
