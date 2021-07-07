@@ -26,7 +26,7 @@ function getPopularMovies() {
         const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
         const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
         const movieRating = `<p>Rating: ${avgMovieRating}</p>`;
-        const movieVotes = `<p>Number of votes: ${votesSum}</p>`;
+        const movieVotes = `<p>Votes: ${votesSum}</p>`;
         const movieCard = $(`<div class='movieCard' value='${movie.id}'>`).append(
           moviePoster
         );
