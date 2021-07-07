@@ -47,8 +47,6 @@ function getPopularMovies() {
   });
 }
 
-// .append($('<div class="info">').append($(movieTitle)).append(movieRating).append(movieVotes)))
-
 // ratings = Our rating database
 // users = Our user database
 
