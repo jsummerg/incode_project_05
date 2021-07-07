@@ -1,7 +1,39 @@
+<% let arr = [] %>
+<% ratings.forEach((ratingData) => { %>
+    <% arr.push(ratingData.rating) %>
+<% }) %>
+<% console.log(arr) %>
+<p>Overall rating: <%=((arr.reduce((a, b) => a + b, 0))/arr.length) %></p>
+<p>Number of ratings: <%=ratings.length%></p>
 
-tesing detais
 <div>
     <iframe class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-tesing detais
+<% if (req.session.user_id) { %>
+    <h2>Rate Movie:</h2>
+    <form class="flex" action="/movies/rate/<%= movieId %>" method="post">
+        <label for="rating">Rating: </label>
+        <select id="rating" name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <button type="submit">Submit Rating</button>
+    </form>
+<% } else { %>
+    <h2>Please login to rate movie: <a href="/login">Login</a></h2>
+<% } %>
+
+<div>
+    <% if(message) { %>
+        <p style='color: red'><%= message %></p>
+    <% } %>    
+</div>

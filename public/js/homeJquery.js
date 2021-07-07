@@ -1,9 +1,4 @@
 const image_url = "https://image.tmdb.org/t/p/w500";
-const tmdb_base_url = "https://api.themoviedb.org/3";
-const api_query = `?api_key=b5e1ec0ad8957e083cf7e7b4d3605c9e`;
-
-const avgMovieRating = 0;
-const votesSum = 0;
 
 $(document).ready(function () {
   getPopularMovies();
@@ -23,6 +18,8 @@ function getPopularMovies() {
       if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
         movieCounter++
         const posterImage = movie.poster_path;
+        let avgMovieRating = "No Rating";
+        let votesSum = "No votes";
         const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
         const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
         const movieRating = `<p>Rating: ${avgMovieRating}</p>`;
