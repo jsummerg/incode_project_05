@@ -1,15 +1,25 @@
+
+<section id='movieHeading'>
+    <h1 id='movieName'>Movie Name</h1>
+    <div id="movieRating">*****</div>
+</section>
+<section id='movieTrailer'>
+    <iframe class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div id='movieSynopsis'>Synopsis of Movie here</div>
+</section>
+<section id='movieCast'>
+    <h2>Cast:</h2>
+</section>
+
 <% let arr = [] %>
 <% ratings.forEach((ratingData) => { %>
     <% arr.push(ratingData.rating) %>
 <% }) %>
 <% console.log(arr) %>
-<p>Overall rating: <%=((arr.reduce((a, b) => a + b, 0))/arr.length) %></p>
-<p>Number of ratings: <%=ratings.length%></p>
-
 <div>
-    <iframe class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p>Overall rating: <%=((arr.reduce((a, b) => a + b, 0))/arr.length) %></p>
+    <p>Number of ratings: <%=ratings.length%></p>
 </div>
-
 <% if (req.session.user_id) { %>
     <h2>Rate Movie:</h2>
     <form class="flex" action="/movies/rate/<%= movieId %>" method="post">
