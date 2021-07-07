@@ -14,21 +14,20 @@ function getPopularMovies() {
     let movieCounter = 0
     $("#movies").empty()
     $.getJSON("/api/popular-movies", function (data) {
+      $.getJSON(`/api/movie-ratings`, function (consoling) { 
+        console.log(consoling)
+      })
       data.results.forEach((movie) => {
         if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
           movieCounter++
           $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
             let avgMovieRating = 'None'
             let votesSum = 0
-
             if (ratingDatabase.length > 0) {
-              console.log("Rating found")
-              // console.log(ratingDatabase)
               let arr = []
               ratingDatabase.forEach((ratingData) => {
                 arr.push(ratingData.rating)
               })
-              console.log(arr)
               avgMovieRating = ((arr.reduce((a, b) => a + b, 0))/arr.length)
               votesSum = arr.length
             }
