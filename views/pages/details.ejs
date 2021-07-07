@@ -16,10 +16,16 @@
     <% arr.push(ratingData.rating) %>
 <% }) %>
 <% console.log(arr) %>
+<% let overAllRating = ((arr.reduce((a, b) => a + b, 0))/arr.length) %>
 <div>
-    <p>Overall rating: <%=((arr.reduce((a, b) => a + b, 0))/arr.length) %></p>
-    <p>Number of ratings: <%=ratings.length%></p>
+    <% if (overAllRating) { %>
+        <p>Overall rating: <strong><%= overAllRating %></strong></p>
+    <% } else { %>
+        <p>Overall rating: <strong>No Votes</strong></p>
+    <% } %>
+    <p>Number of ratings: <strong><%=ratings.length%></strong></p>
 </div>
+
 <% if (req.session.user_id) { %>
     <h2>Rate Movie:</h2>
     <form class="flex" action="/movies/rate/<%= movieId %>" method="post">
