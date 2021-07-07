@@ -13,20 +13,22 @@ body {
     background-color: #F8F1F1;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+/* 
 .flex {
     display: flex;
-}
+} */
 
 /* .flex.wrap {
     flex-wrap: wrap;
 } */
 
 #movies {
+    display: flex;
     background-color: #16697A;
     height: 100%;
     overflow: auto;
     white-space: nowrap;
+    align-items: flex-start;
 }
 
 #movies::-webkit-scrollbar-track
@@ -56,9 +58,9 @@ body {
 		transparent)
 }
 
-.flex.space-between {
-    justify-content: space-evenly; /* Splits the nav div's to be on each side */
-}
+/* .flex.space-between {
+    justify-content: space-evenly; /* Splits the nav div's to be on each side 
+} */
 
 /* HEADER */
 
@@ -185,12 +187,15 @@ button {
     display: inline-block;
     margin: 1% !important;
     width: 10%;
+    white-space: normal;
+    min-width: 10%;
     
 }
 
 .TitleStyle {
     margin-top: 0px !important;
     margin-bottom: 10px !important;
+    text-overflow: ellipsis;
 }
 
 #genreSelect {
@@ -290,4 +295,44 @@ line-height: 0px;
 font-size: 40px;
 color: #FFA62B;
 cursor: pointer;
+}
+
+/* DETAILS PAGE SPECIFICS */
+
+#movieHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#movieHeading h1 {
+    margin: 1%;
+    font-size: 60px;
+}
+
+#movieHeading p {
+    font-size: 50px;
+    margin: 0 0 1% 5%;
+}
+
+#movieTrailer {
+    display: flex;
+}
+
+#movieSynopsis {
+    margin: 2%;
+}
+
+#movieTrailer {
+    display: flex;
+    margin-top: 3%;
+}
+
+#movieSynopsis {
+    width: 50%;
+    margin: 2%
+}
+
+#movieRating {
+    font-size: 50px;
 }
