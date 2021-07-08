@@ -22,10 +22,10 @@ $(document).ready(function () {
   })
 
   $('#genreHomeFilter').change(function() {
-
     // if an individual genre has been checked, we need to uncheck ALL
-    if ($(`input:checkbox[name="genreCheck"]:checked`) .length > 0)
+    if ($(`input:checkbox[name="genreCheck"]:checked`).length > 0)
        $(`input:checkbox[name="genreCheckAll"]`).prop('checked', false)
+    else $(`input:checkbox[name="genreCheckAll"]`).prop('checked', true)
 
     genreFilter = []
 
@@ -53,8 +53,10 @@ function getPopularMovies() {
       })
    
       // selects a random movie from the return list to display on the trailer
-      const i = Math.floor(Math.random() * data.results.length)-1
-      randomMovieId = data.results[i].id
+      if (data.results.length > 0) {
+        const i = Math.floor(Math.random() * data.results.length)-1
+        randomMovieId = data.results[i].id
+      }
       
       data.results.forEach((movie) => {                
           movieCounter++          
@@ -96,12 +98,8 @@ function getPopularMovies() {
           })
       });
 
-      
-      
-      
-
       if (movieCounter == 0) {
-        $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
+        $("#movies").append('<h3>Sorry, there are no movies that match your selection.</h3>')
       }
     });
     
@@ -133,6 +131,7 @@ function getTrailer() {
         
     }
       $(".movieVideo").attr("src", video_URL);
+      $('#homeMovieDetails').empty()
       $('#homeMovieDetails').append(randomMovieInfo)
     }
   )
