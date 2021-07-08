@@ -22,10 +22,10 @@ $(document).ready(function () {
   })
 
   $('#genreHomeFilter').change(function() {
-
     // if an individual genre has been checked, we need to uncheck ALL
-    if ($(`input:checkbox[name="genreCheck"]:checked`) .length > 0)
+    if ($(`input:checkbox[name="genreCheck"]:checked`).length > 0)
        $(`input:checkbox[name="genreCheckAll"]`).prop('checked', false)
+    else $(`input:checkbox[name="genreCheckAll"]`).prop('checked', true)
 
     genreFilter = []
 
@@ -95,11 +95,7 @@ function getPopularMovies() {
             ); // Puts the rating score and count in a div blow the title
           })
       });
-
       
-      
-      
-
       if (movieCounter == 0) {
         $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
       }
@@ -133,6 +129,7 @@ function getTrailer() {
         
     }
       $(".movieVideo").attr("src", video_URL);
+      $('#homeMovieDetails').empty()
       $('#homeMovieDetails').append(randomMovieInfo)
     }
   )
