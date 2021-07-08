@@ -3,6 +3,7 @@ const image_url = "https://image.tmdb.org/t/p/w500";
 $(document).ready(function () {
   getPopularMovies();
   getTrailer();
+  getMovieInfo();
   $('#genreHomeFilter').change(function() {
     getPopularMovies()
   })
@@ -86,3 +87,31 @@ function getTrailer() {
     }
   )
 }
+
+
+// Show the MOVIE INFORMATION (Name, Sypnosis, etc) at class ".movieInfo".
+function getMovieInfo() {
+  let movieId = window.location.href.replace(
+    "http://localhost:3000/movies/",
+    ""
+  ); // Find the movie_id at href
+    console.log("frontend: "+movieId)
+  $.getJSON(`/api/movieInfo/${movieId}`,
+    function (data) {
+      console.log (data)
+      let movieName = data.original_title;
+      let movieYear = data.release_date.substring(0,4)
+      let movieRating = data.vote_average;
+      let movieSynopsis = data.overview;
+      let movieCast = "" //need to create a new axios router for /movie/{movie_id}/credits
+
+      $("#movieName").append(movieName+"("+ movieYear+")") ;
+      $("#movieRating").append(movieRating) ;
+      $("#movieSynopsis").append(movieSynopsis) ;
+      $("#movieCast").append(movieCast) ;
+    }
+  )
+}
+
+
+// For similar movies (maybe above the details page) should reffer using  /movie/{movie_id}/similar
