@@ -336,3 +336,22 @@ cursor: pointer;
 #movieRating {
     font-size: 50px;
 }
+
+/** Genre Filter **/
+.btn-outline-primary {
+    color: #16697A;
+    border-color: #16697A;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #16697A;
+    border-color: #16697A;
+}
+.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+    color: #fff;
+    background-color: #16697A;
+    border-color: #16697A;
+}
+.btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgb(22 105 122 / 50%);
+}
