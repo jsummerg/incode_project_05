@@ -4,7 +4,7 @@ const api_img_path = 'https://image.tmdb.org/t/p/w500/'
 
 $(document).ready(function() {
     getGenres($('#genreSearchFilter'), displayGenreAsSelect)
-    getGenres($('#genreHomeFilter'), displayGenreAsCheckbox)
+    getGenres($('#genreHomeFilter'), displayGenreAsSelect)
 
     $('#searchBar').keyup(function() {
         searchMovies($('#searchBar').val(), $('#genreSearchFilter').val())

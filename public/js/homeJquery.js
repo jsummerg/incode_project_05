@@ -12,15 +12,17 @@ $(document).ready(function () {
 
 // dynamically add 20 most popular movie posters to #movies
 function getPopularMovies() {
-    let genreFilter = '0'//$('#genreHomeFilter').val()
+    let genreFilter = $('#genreHomeFilter').val()
     let movieCounter = 0
+    let genreList = ''
+    if (genreFilter != '0') genreList = '/'+genreFilter
     $("#movies").empty()
-    $.getJSON("/api/popular-movies", function (data) {
+    $.getJSON(`/api/popular-movies${genreList}`, function (data) {
       $.getJSON(`/api/movie-ratings`, function (consoling) { 
         console.log(consoling)
       })
       data.results.forEach((movie) => {        
-        if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
+        
           movieCounter++          
           $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
             let avgMovieRating = 'None'
@@ -54,7 +56,7 @@ function getPopularMovies() {
 
           
 
-        }
+        
       });
       if (movieCounter == 0) {
         $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
