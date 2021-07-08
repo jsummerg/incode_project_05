@@ -1,10 +1,12 @@
 const image_url = "https://image.tmdb.org/t/p/w500";
 var genreFilter = []
+var randomMovieId = 0
+var randomMovieInfo = ''
+var randomMovieRating = 'None'
 
 $(document).ready(function () {
   
-  getPopularMovies();
-  getTrailer();
+  getPopularMovies();  
   getMovieInfo();
   getMovieCast();
 
@@ -43,14 +45,18 @@ function getPopularMovies() {
     let movieCounter = 0
     let genreList = ''
     if (genreFilter.length > 0) genreList = '/'+genreFilter.join()
-    console.log('genre list: '+genreList)
+    
     $("#movies").empty()
     $.getJSON(`/api/popular-movies${genreList}`, function (data) {
       $.getJSON(`/api/movie-ratings`, function (consoling) { 
         //console.log(consoling)
       })
-      data.results.forEach((movie) => {        
-        
+   
+      // selects a random movie from the return list to display on the trailer
+      const i = Math.floor(Math.random() * data.results.length)-1
+      randomMovieId = data.results[i].id
+      
+      data.results.forEach((movie) => {                
           movieCounter++          
           $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
             let avgMovieRating = 'None'
@@ -63,7 +69,14 @@ function getPopularMovies() {
               avgMovieRating = ((arr.reduce((a, b) => a + b, 0))/arr.length)
               votesSum = arr.length
             }
-            
+                                 
+            if (randomMovieId == movie.id) {
+              randomMovieInfo = `<h2>${movie.original_title} (`+isNull(movie.release_date,'?').substring(0,4)+`)</h2>`
+              randomMovieInfo += `<p>Rating: ${avgMovieRating}</p>`
+              randomMovieInfo += `<p>${movie.overview}</p>`
+              getTrailer();
+            }
+
             const posterImage = movie.poster_path;
             const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
             const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
@@ -81,15 +94,17 @@ function getPopularMovies() {
                 )
             ); // Puts the rating score and count in a div blow the title
           })
-
-          
-
-        
       });
+
+      
+      
+      
+
       if (movieCounter == 0) {
         $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
       }
     });
+    
 }
 
 // ratings = Our rating database
@@ -97,23 +112,28 @@ function getPopularMovies() {
 
 // Show the MOVIE VIDEO (from youtube or vimeo) at class ".movieVideo".
 function getTrailer() {
-  let movieId = window.location.href.replace(
-    "http://localhost:3000/movies/",
-    ""
-  ); // Find the movie_id at href
+  let movieId = randomMovieId
+
+  // if the call is coming from the details page, find the movie_id at href
+  if (window.location.href.includes('/movies/'))   
+    movieId = window.location.href.replace("http://localhost:3000/movies/",""); 
+ 
   $.getJSON(`/api/videos/${movieId}`,
     function (data) {
-      let video_URL = "";
-      const i = Math.floor(Math.random() * 20)
+      let video_URL = "";      
       if (data.results[0]?.site == undefined) {
         //If there's no videos in the results, it will load this instead of giving a error (example: http://localhost:3000/movies/385687).
         video_URL = `https://www.comingsoon.net/assets/uploads/2019/02/trailer1.jpg`;
-      } else if (data.results[0]?.site === "YouTube") {
-        video_URL = `https://www.youtube.com/embed/${data.results[0].key}`;
-      } else if (data.results[0]?.site === "Vimeo") {
-        video_URL = `https://vimeo.com/${data.results[0].key}`;
-      }
+      } else {
+        if (data.results[0]?.site === "YouTube") {
+          video_URL = `https://www.youtube.com/embed/${data.results[0].key}`;
+        } else if (data.results[0]?.site === "Vimeo") {
+          video_URL = `https://vimeo.com/${data.results[0].key}`;
+        }
+        
+    }
       $(".movieVideo").attr("src", video_URL);
+      $('#homeMovieDetails').append(randomMovieInfo)
     }
   )
 }
