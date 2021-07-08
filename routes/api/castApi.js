@@ -6,9 +6,10 @@ const { redirectToLogin } = require('../../middlewear')
 
 router.get('/:movie_id', (req, res) => {
     let movieId = req.params.movie_id    
-    axios.get(`/movie/${movieId}${process.env.TMDB_API_KEY}`, { params: { movieId: req.params.id } }) 
+    axios.get(`/movie/${movieId}/credits${process.env.TMDB_API_KEY}`, { params: { movieId: req.params.id } }) 
     .then(response => {
     res.send(response.data)
+    console.log(response.data)
     })
     .catch((err) => {
         res.send(err.message)

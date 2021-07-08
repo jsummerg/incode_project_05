@@ -4,6 +4,7 @@ $(document).ready(function () {
   getPopularMovies();
   getTrailer();
   getMovieInfo();
+  getMovieCast();
   $('#genreHomeFilter').change(function() {
     getPopularMovies()
   })
@@ -89,25 +90,55 @@ function getTrailer() {
 }
 
 
-// Show the MOVIE INFORMATION (Name, Sypnosis, etc) at class ".movieInfo".
+// Show the MOVIE INFORMATION (Name, Sypnosis, etc) 
 function getMovieInfo() {
   let movieId = window.location.href.replace(
     "http://localhost:3000/movies/",
     ""
   ); // Find the movie_id at href
-    console.log("frontend: "+movieId)
   $.getJSON(`/api/movieInfo/${movieId}`,
     function (data) {
-      console.log (data)
       let movieName = data.original_title;
       let movieYear = data.release_date.substring(0,4)
       let movieRating = data.vote_average;
       let movieSynopsis = data.overview;
-      let movieCast = "" //need to create a new axios router for /movie/{movie_id}/credits
-
       $("#movieName").append(movieName+"("+ movieYear+")") ;
       $("#movieRating").append(movieRating) ;
       $("#movieSynopsis").append(movieSynopsis) ;
+    }
+  )
+}
+
+// Show the MOVIE CAST (actor, directors, etc) 
+function getMovieCast() {
+  let movieId = window.location.href.replace(
+    "http://localhost:3000/movies/",
+    ""
+  ); // Find the movie_id at href
+
+// Trying to get the director name here. Not working yet!
+  $.getJSON(`/api/castApi/${movieId}`, 
+    function (data) {
+      
+      // if (data.crew.length > 0) {
+      let director = ""
+      //   data.crew.job.forEach((Director) => {
+      //     director.push(data.crew.name)
+      //   })
+      
+        // for (let i=0; i<data.crew.length; i++) {
+        //   if data.crew[i].job == "Director" {
+        //   director.push(data.crew[i].name)
+        //   }
+        // }
+
+      console.log (director)
+      $("#director").append(director) ;
+
+      // Just showing the first name for now. I will try get the first 5 actors names here
+        let movieCast = data.cast[0].name
+        //console.log (movieCast)
+
       $("#movieCast").append(movieCast) ;
     }
   )
