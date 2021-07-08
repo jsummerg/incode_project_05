@@ -14,14 +14,16 @@ $(document).ready(function () {
 function getPopularMovies() {
     let genreFilter = $('#genreHomeFilter').val()
     let movieCounter = 0
+    let genreList = ''
+    if (genreFilter != '0') genreList = '/'+genreFilter
     $("#movies").empty()
-    $.getJSON("/api/popular-movies", function (data) {
+    $.getJSON(`/api/popular-movies${genreList}`, function (data) {
       $.getJSON(`/api/movie-ratings`, function (consoling) { 
         console.log(consoling)
       })
-      data.results.forEach((movie) => {
-        if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
-          movieCounter++
+      data.results.forEach((movie) => {        
+        
+          movieCounter++          
           $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
             let avgMovieRating = 'None'
             let votesSum = 0
@@ -33,7 +35,7 @@ function getPopularMovies() {
               avgMovieRating = ((arr.reduce((a, b) => a + b, 0))/arr.length)
               votesSum = arr.length
             }
-
+            
             const posterImage = movie.poster_path;
             const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
             const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
@@ -54,7 +56,7 @@ function getPopularMovies() {
 
           
 
-        }
+        
       });
       if (movieCounter == 0) {
         $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
@@ -71,7 +73,6 @@ function getTrailer() {
     "http://localhost:3000/movies/",
     ""
   ); // Find the movie_id at href
-    console.log("frontend: "+movieId)
   $.getJSON(`/api/videos/${movieId}`,
     function (data) {
       let video_URL = "";
