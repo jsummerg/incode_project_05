@@ -4,7 +4,7 @@ const api_img_path = 'https://image.tmdb.org/t/p/w500/'
 
 $(document).ready(function() {
     getGenres($('#genreSearchFilter'), displayGenreAsSelect)
-    getGenres($('#genreHomeFilter'), displayGenreAsSelect)
+    getGenres($('#genreHomeFilter'), displayGenreAsCheckbox)
 
     $('#searchBar').keyup(function() {
         searchMovies($('#searchBar').val(), $('#genreSearchFilter').val())
@@ -16,15 +16,7 @@ $(document).ready(function() {
     
     $("#searchIcon").click(function() {
         window.location.href = '/movies/'+$('#movieId').val()
-    })
-    
-    /*$('#genreHomeFilter').change(function() {
-        let checkboxes = $(`input:checkbox[name="${'#genreCheck'}"]:checked`)
-        checkboxes.forEach((checkbox) => {
-            alert(checkbox.value);
-        })
-    })*/
-    
+    })        
 })
 
 function getGenres(element, display) {
@@ -46,7 +38,7 @@ function displayGenreAsSelect(genreList, element) {
 }
 
 function displayGenreAsCheckbox(genreList, element) {
-    let c = 1
+    let c = 0
     genreList.genres.forEach(genre => {
         c++
         let html = '<input type="checkbox" class="btn-check" name="genreCheck" id="genreCheck'+c+'" autocomplete="off" value="'+genre.id+'">'

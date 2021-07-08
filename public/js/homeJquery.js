@@ -1,25 +1,53 @@
 const image_url = "https://image.tmdb.org/t/p/w500";
+var genreFilter = []
 
 $(document).ready(function () {
+  
   getPopularMovies();
   getTrailer();
   getMovieInfo();
   getMovieCast();
-  $('#genreHomeFilter').change(function() {
-    getPopularMovies()
+
+  $('#genreCheckAll').change(function() {    
+    let allGenres = $(`input:checkbox[name="genreCheckAll"]`)  
+    
+    // if ALL is checked, we need to uncheck all the individual genres
+    if (allGenres.prop('checked') == true) {   
+      $(`input:checkbox[name="genreCheck"]:checked`).each(function() {      
+        $(this).prop('checked', false)
+      })
+    }
   })
-});
+
+  $('#genreHomeFilter').change(function() {
+
+    // if an individual genre has been checked, we need to uncheck ALL
+    if ($(`input:checkbox[name="genreCheck"]:checked`) .length > 0)
+       $(`input:checkbox[name="genreCheckAll"]`).prop('checked', false)
+
+    genreFilter = []
+
+    // if ALL is not checked, we need to build a list of the checked individual genres
+    if ($(`input:checkbox[name="genreCheckAll"]`).prop('checked') == false) {
+      let checkboxes = $(`input:checkbox[name="genreCheck"]:checked`)
+      for (let i=0; i<checkboxes.length; i++) {
+          genreFilter.push(checkboxes[i].value)
+      }
+    }
+    getPopularMovies()
+   })
+ })
 
 // dynamically add 20 most popular movie posters to #movies
-function getPopularMovies() {
-    let genreFilter = $('#genreHomeFilter').val()
+function getPopularMovies() {    
     let movieCounter = 0
     let genreList = ''
-    if (genreFilter != '0') genreList = '/'+genreFilter
+    if (genreFilter.length > 0) genreList = '/'+genreFilter.join()
+    console.log('genre list: '+genreList)
     $("#movies").empty()
     $.getJSON(`/api/popular-movies${genreList}`, function (data) {
       $.getJSON(`/api/movie-ratings`, function (consoling) { 
-        console.log(consoling)
+        //console.log(consoling)
       })
       data.results.forEach((movie) => {        
         
