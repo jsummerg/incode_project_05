@@ -10,41 +10,54 @@ $(document).ready(function () {
 
 // dynamically add 20 most popular movie posters to #movies
 function getPopularMovies() {
-  let genreFilter = $('#genreHomeFilter').val()
-  let movieCounter = 0
-  let genreList = ''
-  if (genreFilter != '0') genreList = '/'+genreFilter
-  console.log("list of genres "+genreList)
-  $("#movies").empty()
-  $.getJSON(`/api/popular-movies${genreList}`, function (data) {
-    data.results.forEach((movie) => {
-      //if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
-        movieCounter++
-        const posterImage = movie.poster_path;
-        let avgMovieRating = "No Rating";
-        let votesSum = "No votes";
-        const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
-        const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
-        const movieRating = `<p>Rating: ${avgMovieRating}</p>`;
-        const movieVotes = `<p>Votes: ${votesSum}</p>`;
-        const movieCard = $(`<div class='movieCard' value='${movie.id}'>`).append(
-          moviePoster
-        );
-        $("#movies").append(
-          $(movieCard)
-            .append($(movieTitle)) // Creates a card with the poster img and title below it
-            .append(
-              $('<div class="info flex space-between">')
-                .append(movieRating)
-                .append(movieVotes)
-            )
-        ); // Puts the rating score and count in a div blow the title
-      //}
+    let genreFilter = $('#genreHomeFilter').val()
+    let movieCounter = 0
+    $("#movies").empty()
+    $.getJSON("/api/popular-movies", function (data) {
+      $.getJSON(`/api/movie-ratings`, function (consoling) { 
+        console.log(consoling)
+      })
+      data.results.forEach((movie) => {
+        if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
+          movieCounter++
+          $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
+            let avgMovieRating = 'None'
+            let votesSum = 0
+            if (ratingDatabase.length > 0) {
+              let arr = []
+              ratingDatabase.forEach((ratingData) => {
+                arr.push(ratingData.rating)
+              })
+              avgMovieRating = ((arr.reduce((a, b) => a + b, 0))/arr.length)
+              votesSum = arr.length
+            }
+
+            const posterImage = movie.poster_path;
+            const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
+            const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
+            const movieRating = `<p>Rating: <strong>${avgMovieRating}</strong></p>`;
+            const movieVotes = `<p>Votes: <strong>${votesSum}</strong></p>`;
+            const movieCard = $(`<div class='movieCard' value='${movie.id}'>`).append(moviePoster);
+
+            $("#movies").append(
+              $(movieCard)
+                .append($(movieTitle)) // Creates a card with the poster img and title below it
+                .append(
+                  $('<div class="info flex space-between">')
+                    .append(movieRating)
+                    .append(movieVotes)
+                )
+            ); // Puts the rating score and count in a div blow the title
+          })
+
+          
+
+        }
+      });
+      if (movieCounter == 0) {
+        $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
+      }
     });
-    if (movieCounter == 0) {
-      $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
-    }
-  });
 }
 
 // ratings = Our rating database
@@ -70,7 +83,5 @@ function getTrailer() {
       }
       $(".movieVideo").attr("src", video_URL);
     }
-  ).catch((err) => {
-    return res.send(err.message);
-  });
+  )
 }

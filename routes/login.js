@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
                 if (result) {
                     // if successful, create session and redirect
                     req.session.user_id = existingUser.user_id
-                    res.redirect('/')
+                    res.redirect('back')
                 } 
                 else {
                     return res.redirect('/login?message=Incorrect%20login%20details.')

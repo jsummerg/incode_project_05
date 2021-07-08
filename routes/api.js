@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const popularMoviesRouter = require('./api/popularMovies.js')
 const videosRouter = require('./api/videos.js')
+const RatingRouter = require('./api/ratingApi.js')
 
 //body parser for post requests
 const app = express()
@@ -9,6 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 router.use('/popular-movies' , popularMoviesRouter)
+router.use('/movie-ratings' , RatingRouter)
 router.use('/videos', videosRouter)
 
 module.exports = router
