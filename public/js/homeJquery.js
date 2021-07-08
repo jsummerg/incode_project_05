@@ -2,7 +2,7 @@ const image_url = "https://image.tmdb.org/t/p/w500";
 
 $(document).ready(function () {
   getPopularMovies();
-  getTrailer();
+  //getTrailer();
   $('#genreHomeFilter').change(function() {
     getPopularMovies()
   })
@@ -12,10 +12,13 @@ $(document).ready(function () {
 function getPopularMovies() {
   let genreFilter = $('#genreHomeFilter').val()
   let movieCounter = 0
+  let genreList = ''
+  if (genreFilter != '0') genreList = '/'+genreFilter
+  console.log("list of genres "+genreList)
   $("#movies").empty()
-  $.getJSON("/api/popular-movies", function (data) {
+  $.getJSON(`/api/popular-movies${genreList}`, function (data) {
     data.results.forEach((movie) => {
-      if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
+      //if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
         movieCounter++
         const posterImage = movie.poster_path;
         let avgMovieRating = "No Rating";
@@ -36,7 +39,7 @@ function getPopularMovies() {
                 .append(movieVotes)
             )
         ); // Puts the rating score and count in a div blow the title
-      }
+      //}
     });
     if (movieCounter == 0) {
       $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
@@ -53,7 +56,6 @@ function getTrailer() {
     "http://localhost:3000/movies/",
     ""
   ); // Find the movie_id at href
-    console.log("frontend: "+movieId)
   $.getJSON(`/api/videos/${movieId}`,
     function (data) {
       let video_URL = "";

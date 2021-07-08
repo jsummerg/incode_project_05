@@ -3,8 +3,8 @@ const api_key = '1a36dc53a72920430421fa20480bb680'
 const api_img_path = 'https://image.tmdb.org/t/p/w500/'
 
 $(document).ready(function() {
-    getGenres($('#genreSearchFilter'))
-    getGenres($('#genreHomeFilter'))
+    getGenres($('#genreSearchFilter'), displayGenreAsSelect)
+    getGenres($('#genreHomeFilter'), displayGenreAsCheckbox)
 
     $('#searchBar').keyup(function() {
         searchMovies($('#searchBar').val(), $('#genreSearchFilter').val())
@@ -18,24 +18,40 @@ $(document).ready(function() {
         window.location.href = '/movies/'+$('#movieId').val()
     })
     
+    $('#genreHomeFilter').change(function() {
+        let checkboxes = $(`input[name="${'#genreCheck'}"]:checked`)
+        checkboxes.forEach((checkbox) => {
+            alert(checkbox.value);
+        })
+    })
     
 })
 
-function getGenres(element) {
+function getGenres(element, display) {
     $.ajax({
         url: api_endpoint+'/genre/movie/list?',
         method: 'get',
         data: {api_key: api_key},
         dataType: 'json',
         success: function(genreList) {
-            displayGenreList(genreList, element)
+            display(genreList, element)
         }
     })
 }
 
-function displayGenreList(genreList, element) {
+function displayGenreAsSelect(genreList, element) {
     genreList.genres.forEach(genre => {
         $(element).append('<option value="'+genre.id+'">'+genre.name+'</option></option>')
+    })
+}
+
+function displayGenreAsCheckbox(genreList, element) {
+    let c = 1
+    genreList.genres.forEach(genre => {
+        c++
+        let html = '<input type="checkbox" class="btn-check" name="genreCheck" id="genreCheck'+c+'" autocomplete="off" value="'+genre.id+'">'
+        html += '<label class="btn btn-outline-primary" for="genreCheck'+c+'">'+genre.name+'</label>'
+        $(element).append(html)
     })
 }
 

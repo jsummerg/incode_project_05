@@ -5,9 +5,8 @@ const axios = require('axios')
 const { redirectToLogin } = require('../../middlewear')
 
 router.get('/:movie_id', (req, res) => {
-    let movieId = req.params.movie_id    
-    // should be changed after to ${movieId} in the place of "550" in the below line. This is for testing at home page.
-    axios.get(`/movie/${movieId}/videos${process.env.TMDB_API_KEY}`, { params: { movieId: req.params.id } })
+    let movieId = req.params.movie_id  
+    axios.get(`/movie/${movieId}/videos${process.env.TMDB_API_KEY}`)
     .then(response => {
         res.send(response.data)
     })
