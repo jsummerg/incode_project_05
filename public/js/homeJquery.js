@@ -10,16 +10,16 @@ $(document).ready(function () {
 
 // dynamically add 20 most popular movie posters to #movies
 function getPopularMovies() {
-    let genreFilter = $('#genreHomeFilter').val()
+    let genreFilter = '0'//$('#genreHomeFilter').val()
     let movieCounter = 0
     $("#movies").empty()
     $.getJSON("/api/popular-movies", function (data) {
       $.getJSON(`/api/movie-ratings`, function (consoling) { 
         console.log(consoling)
       })
-      data.results.forEach((movie) => {
+      data.results.forEach((movie) => {        
         if (genreFilter == '0' || movie.genre_ids.includes(parseInt(genreFilter))) {
-          movieCounter++
+          movieCounter++          
           $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
             let avgMovieRating = 'None'
             let votesSum = 0
@@ -31,7 +31,7 @@ function getPopularMovies() {
               avgMovieRating = ((arr.reduce((a, b) => a + b, 0))/arr.length)
               votesSum = arr.length
             }
-
+            
             const posterImage = movie.poster_path;
             const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
             const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
