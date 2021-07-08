@@ -53,8 +53,10 @@ function getPopularMovies() {
       })
    
       // selects a random movie from the return list to display on the trailer
-      const i = Math.floor(Math.random() * data.results.length)-1
-      randomMovieId = data.results[i].id
+      if (data.results.length > 0) {
+        const i = Math.floor(Math.random() * data.results.length)-1
+        randomMovieId = data.results[i].id
+      }
       
       data.results.forEach((movie) => {                
           movieCounter++          
@@ -95,9 +97,9 @@ function getPopularMovies() {
             ); // Puts the rating score and count in a div blow the title
           })
       });
-      
+
       if (movieCounter == 0) {
-        $("#movies").append('<h3>Sorry, there are no '+$('#genreHomeFilter option:selected').text()+' movies on the list of the 20 most popular movies.</h3>')
+        $("#movies").append('<h3>Sorry, there are no movies that match your selection.</h3>')
       }
     });
     
