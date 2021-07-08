@@ -116,30 +116,31 @@ function getMovieCast() {
     ""
   ); // Find the movie_id at href
 
-// Trying to get the director name here. Not working yet!
   $.getJSON(`/api/castApi/${movieId}`, 
     function (data) {
-      
+
+            // Just showing the first name for now. I will try get the first 5 actors names here
+            let movieCast = data.cast[0].name
+            //console.log (movieCast)
+    
+          $("#movieCast").append(movieCast) ;
+
+      // Trying to get the director name here. Not working yet!
       // if (data.crew.length > 0) {
-      let director = ""
-      //   data.crew.job.forEach((Director) => {
-      //     director.push(data.crew.name)
-      //   })
+      // let director = ""
+      // //   data.crew.job.forEach((Director) => {
+      // //     director.push(data.crew.name)
+      // //   })
       
-        // for (let i=0; i<data.crew.length; i++) {
-        //   if data.crew[i].job == "Director" {
-        //   director.push(data.crew[i].name)
-        //   }
-        // }
+      //   // for (let i=0; i<data.crew.length; i++) {
+      //   //   if data.crew[i].job == "Director" {
+      //   //   director.push(data.crew[i].name)
+      //   //   }
+      //   // }
 
-      console.log (director)
-      $("#director").append(director) ;
+      // console.log (director)
+      // $("#director").append(director) ;
 
-      // Just showing the first name for now. I will try get the first 5 actors names here
-        let movieCast = data.cast[0].name
-        //console.log (movieCast)
-
-      $("#movieCast").append(movieCast) ;
     }
   )
 }
