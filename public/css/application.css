@@ -112,35 +112,36 @@ header a {
     margin-top: 20px;
 }
 
-header a:link {
+
+a:link {
     color: #FFA62B;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-header a:visited {
+a:visited {
     color: #FFA62B;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-header a:hover {
+a:hover {
     color: #DB6400;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-header a:active {
+a:active {
     color: #F8F1F1;
     position: relative;
     display: inline-block;
     margin-top: 20px;
 }
 
-header a[title]:hover::after {
+a[title]:hover::after {
     content: attr(title);
     position: absolute;
     top: -100%;
