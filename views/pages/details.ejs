@@ -1,21 +1,3 @@
-<section id='movieHeading'>
-    <h1 id='movieName'> </h1>
-    <div id="movieRating">
-        <i class="fas fa-grin-stars"></i>
-        <i class="fas fa-grin-stars"></i>
-        <i class="fas fa-grin-stars"></i>
-        <i class="far fa-grin-stars"></i>
-        <i class="far fa-grin-stars"></i>
-    </div>
-</section>
-<section id='movieTrailer'>
-    <iframe id="detailsVideo" class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <p id='movieSynopsis'></p>
-</section>
-<section id='movieCast'>
-    <h2>Cast:</h2>
-</section>
-
 <% let arrRating = [] %>
 <% ratings.forEach((ratingData) => { %>
     <% arrRating.push(ratingData.rating) %>
@@ -26,28 +8,53 @@
 <% ratings.forEach((userRating) => { %>
     <% arrUserRating.push(userRating.rating) %>
 <% }) %>
+<section id='movieHeading'>
+    <h1 id='movieName'> </h1>
+    <div class='movieRating'></div>
+    <div class="stars-inner"></div>
+    <div class="stars-outer"></div>
+</section>
+
+<section id='movieTrailer'>
+    <iframe id="detailsVideo" class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p id='movieSynopsis'></p>
+</section>
+<section id='movieCast'>
+    <h2>Cast:</h2>
+</section>
+
+
+<section id='ratings'>
+
 
 <div>
     <% if (overAllRating) { %>
-        <p>Overall rating: <strong><%= overAllRating %></strong></p>
+        <p>Overall Rating: <strong><%= overAllRating %></strong></p>
     <% } else { %>
-        <p>Overall rating: <strong>No Votes</strong></p>
+        <p>Overall Rating: <strong>No Votes</strong></p>
     <% } %>
 
     <% if (userRating.length > 0) { %>
         <p>Your Rating: <strong><%= arrUserRating %></strong></p>
     <% } else { %>
-        <p>Your Rating: <strong>None</strong></p>
+        <p>Your Rating: <strong>You haven't rated this movie yet!</strong></p>
     <% } %>
 
-    <p>Number of ratings: <strong><%=ratings.length%></strong></p>
+    <p>Number of Ratings: <strong><%=ratings.length%></strong></p>
+    <div id='thankyou'>
+        <% if(message) { %>
+            <p style='color: red'><%= message %></p>
+        <% } %>    
+    </div>
 </div>
 
+<div id='userRatingInput'>
 <% if (req.session.user_id) { %>
-    <h2>Rate Movie:</h2>
+    <h3>Rate This Movie:</h3>
+    <p>Let us know what you thought of this movie!</p>
     <form class="flex" action="/movies/rate/<%= movieId %>" method="post">
-        <label for="rating">Rating: </label>
-        <select id="rating" name="rating">
+        <label for="rating">Your rating: </label>
+        <select id="ratingDropDown" name="rating">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -64,9 +71,6 @@
 <% } else { %>
     <h2>Please login to rate movie: <a href="/login">Login</a></h2>
 <% } %>
-
-<div>
-    <% if(message) { %>
-        <p style='color: red'><%= message %></p>
-    <% } %>    
 </div>
+
+</section>

@@ -81,6 +81,10 @@ header {
     width: auto;
 }
 
+header h1 {
+    text-decoration: none;
+}
+
 
 
 /* FOOTER */
@@ -378,4 +382,62 @@ cursor: pointer;
 
 #loginFormHeading {
     padding: 2% 1%;
+}
+
+/*DETAILS PAGE SPECIFICS*/
+
+#ratingDropDown {
+    height: 40px;
+    width: 100px;
+    justify-content: center;
+    font-size: larger;
+    background-color: #F8F1F1;
+}
+
+#ratingDropDown > option > a:hover, #ratingDropDown > option > a:focus{
+    background-color: #FFA62B;
+}
+
+#ratings {
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+}
+
+#currentRatings {
+    align-items: center;
+}
+
+/* DETAILS RAITINGS */
+.stars-outer {
+    position: relative;
+    display: inline-block;
+}
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+.stars-outer::before {
+    content: '\f587 \f587 \f587 \f587 \f587';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #ccc;
+}
+.stars-inner::before {
+    content: '\f587 \f587 \f587 \f587 \f587';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #f8ce0b;
+}
+
+#movieCast {
+    margin: 2%;
+}
+
+#thankyou {
+    font-size: 30px;
 }
