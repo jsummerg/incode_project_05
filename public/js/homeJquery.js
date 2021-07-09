@@ -167,10 +167,8 @@ function getMovieInfo() {
     function (data) {
       let movieName = data.original_title;
       let movieYear = data.release_date.substring(0,4)
-      let movieRating = data.vote_average;
       let movieSynopsis = data.overview;
       $("#movieName").append(movieName+"("+ movieYear+")") ;
-      $("#movieRating").append(movieRating) ;
       $("#movieSynopsis").append(movieSynopsis) ;
     }
   )
