@@ -81,6 +81,10 @@ header {
     width: auto;
 }
 
+header h1 {
+    text-decoration: none;
+}
+
 
 
 /* FOOTER */
@@ -378,4 +382,27 @@ cursor: pointer;
 
 #loginFormHeading {
     padding: 2% 1%;
+}
+
+/*DETAILS PAGE SPECIFICS*/
+
+#ratingDropDown {
+    height: 40px;
+    width: 100px;
+    justify-content: center;
+    font-size: larger;
+    background-color: #F8F1F1;
+}
+
+#ratingDropDown > option > a:hover, #ratingDropDown > option > a:focus{
+    background-color: #FFA62B;
+}
+
+#ratings {
+    display: flex;
+    justify-content: space-around;
+}
+
+#currentRatings {
+    align-items: center;
 }

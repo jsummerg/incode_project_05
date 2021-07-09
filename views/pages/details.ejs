@@ -15,7 +15,8 @@
 <section id='movieCast'>
     <h2>Cast:</h2>
 </section>
-
+<section id='ratings'>
+<section id='currentRatings'>
 <% let arr = [] %>
 <% ratings.forEach((ratingData) => { %>
     <% arr.push(ratingData.rating) %>
@@ -30,12 +31,14 @@
     <% } %>
     <p>Number of ratings: <strong><%=ratings.length%></strong></p>
 </div>
-
+</section>
+<section id='userRatingInput'>
 <% if (req.session.user_id) { %>
-    <h2>Rate Movie:</h2>
+    <h3>Rate This Movie:</h3>
+    <p>Let us know what you thought of this movie!</p>
     <form class="flex" action="/movies/rate/<%= movieId %>" method="post">
-        <label for="rating">Rating: </label>
-        <select id="rating" name="rating">
+        <label for="rating">Your rating: </label>
+        <select id="ratingDropDown" name="rating">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -52,7 +55,8 @@
 <% } else { %>
     <h2>Please login to rate movie: <a href="/login">Login</a></h2>
 <% } %>
-
+</section>
+</section>
 <div>
     <% if(message) { %>
         <p style='color: red'><%= message %></p>
