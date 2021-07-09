@@ -48,7 +48,7 @@ router.post('/rate/:id', (req, res) => {
         else {
             db.none('INSERT INTO ratings(user_id, movie_id, rating) VALUES ($1, $2, $3);', [req.session.user_id, req.params.id, req.body.rating])
             .then(() => {
-                res.redirect(`/movies/${req.params.id}?message=Thank%20You%20for%20rating!`)
+                res.redirect(`/movies/${req.params.id}?message=Thank%20You%20for%20voting!`)
             })
             .catch(err => {
                 res.send(err)

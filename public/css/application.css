@@ -401,6 +401,7 @@ cursor: pointer;
 #ratings {
     display: flex;
     justify-content: space-around;
+    margin: 2%;
 }
 
 #currentRatings {
@@ -431,4 +432,12 @@ cursor: pointer;
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
     color: #f8ce0b;
+}
+
+#movieCast {
+    margin: 2%;
+}
+
+#thankyou {
+    font-size: 30px;
 }
