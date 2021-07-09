@@ -1,10 +1,10 @@
 
-<div>
+<div id="loginFormHeading">
     <h2>Login</h2>
     <p>Enter your email and password</p>
 </div>
 
-<form action='/login' method='POST'>
+<form action='/login' method='POST' id='loginForm'>
     <div>
         <label for='email'>Email:</label>
         <input id='email' name='email' type='email'>
@@ -19,6 +19,6 @@
     <% } %>
     <button type='submit'>Login</button>
 </form>
-<h2>Don't have an account?</h2>
-<button><a href='/signup'>Sign Up</a></button>
+<h3>Don't have an account?</h3>
+<p><a href='/signup'>Sign up</a> to start rating your favourite movies today!</p>
 
