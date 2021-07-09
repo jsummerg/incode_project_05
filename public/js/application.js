@@ -15,7 +15,8 @@ $(document).ready(function() {
     })
     
     $("#searchIcon").click(function() {
-        window.location.href = '/movies/'+$('#movieId').val()
+        if ($('#movieId').val() != '') 
+            window.location.href = '/movies/'+$('#movieId').val()
     })        
 })
 
