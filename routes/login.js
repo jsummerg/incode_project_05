@@ -9,7 +9,7 @@ const { redirectToHome } = require('../middlewear')
 router.get('/', redirectToHome, (req, res) => {
     res.render('pages/login', {
         message: req.query.message,
-        referer:req.headers.referer,
+        referer: req.headers.referer,
         req: req,
         title: 'Login',
     })

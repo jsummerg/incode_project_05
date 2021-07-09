@@ -10,20 +10,31 @@
 <section id='movieCast'>
     <h2>Cast:</h2>
 </section>
-<section id='ratings'>
-<section id='currentRatings'>
-<% let arr = [] %>
+
+<% let arrRating = [] %>
 <% ratings.forEach((ratingData) => { %>
-    <% arr.push(ratingData.rating) %>
+    <% arrRating.push(ratingData.rating) %>
 <% }) %>
-<% console.log(arr) %>
-<% let overAllRating = ((arr.reduce((a, b) => a + b, 0))/arr.length) %>
+<% let overAllRating = Math.round((arrRating.reduce((a, b) => a + b, 0))/arrRating.length) %>
+
+<% let arrUserRating = [] %>
+<% ratings.forEach((userRating) => { %>
+    <% arrUserRating.push(userRating.rating) %>
+<% }) %>
+
 <div>
     <% if (overAllRating) { %>
         <p>Overall rating: <strong><%= overAllRating %></strong></p>
     <% } else { %>
         <p>Overall rating: <strong>No Votes</strong></p>
     <% } %>
+
+    <% if (userRating.length > 0) { %>
+        <p>Your Rating: <strong><%= arrUserRating %></strong></p>
+    <% } else { %>
+        <p>Your Rating: <strong>None</strong></p>
+    <% } %>
+
     <p>Number of ratings: <strong><%=ratings.length%></strong></p>
 </div>
 </section>

@@ -1,12 +1,13 @@
 const express = require('express')
 const db = require('../database')
 const router = express.Router()
+const { redirectToHome } = require('../middlewear')
 
 const bcrypt = require('bcrypt');
 const saltRounds = 5;
 
 // Sign Up page
-router.get('/', (req, res) => {
+router.get('/', redirectToHome, (req, res) => {
     res.render('pages/signup', {
         message: req.query.message,
         req: req,

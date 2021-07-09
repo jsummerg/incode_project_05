@@ -9,6 +9,7 @@ $(document).ready(function () {
   getPopularMovies();  
   getMovieInfo();
   getMovieCast();
+  GetRatings();
 
   $('#genreCheckAll').change(function() {    
     let allGenres = $(`input:checkbox[name="genreCheckAll"]`)  
@@ -37,8 +38,45 @@ $(document).ready(function () {
       }
     }
     getPopularMovies()
+    GetRatings()
    })
  })
+
+function GetRatings() {
+  let genreList = ''
+  if (genreFilter.length > 0) genreList = '/'+genreFilter.join()
+  $.getJSON(`/api/popular-movies${genreList}`, function (data) {
+    data.results.forEach((movie) => {                      
+      $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
+        // Rating stuff
+        let avgMovieRating = 'None'
+        let votesSum = 0
+        if (ratingDatabase.length > 0) {
+          let arr = []
+          ratingDatabase.forEach((ratingData) => {
+            arr.push(ratingData.rating)
+          })
+          avgMovieRating = Math.round((arr.reduce((a, b) => a + b, 0))/arr.length)
+          votesSum = arr.length
+          Math.round()
+        }
+        const movieRating = `<p class='ratingSlot'>Rating: <strong>${avgMovieRating}</strong></p>`;
+        const movieVotes = `<p class='votesSlot'>Votes: <strong>${votesSum}</strong></p>`;
+
+        $(`div[value="${movie.id}"] .votesSlot`).replaceWith(movieVotes)
+        $(`div[value="${movie.id}"] .ratingSlot`).replaceWith(movieRating)
+        
+        // Random trailer picker
+          if (randomMovieId == movie.id) {
+            randomMovieInfo = `<h2>${movie.original_title} (`+isNull(movie.release_date,'?').substring(0,4)+`)</h2>`
+            randomMovieInfo += `<p>Rating: ${avgMovieRating}</p>`
+            randomMovieInfo += `<p>${movie.overview}</p>`
+            getTrailer();
+          }
+      })
+    })
+  })
+}
 
 // dynamically add 20 most popular movie posters to #movies
 function getPopularMovies() {    
@@ -55,45 +93,30 @@ function getPopularMovies() {
       }
       
       data.results.forEach((movie) => {                
-          movieCounter++          
-          $.getJSON(`/api/movie-ratings/${movie.id}`, function (ratingDatabase) {
-            let avgMovieRating = 'None'
-            let votesSum = 0
-            if (ratingDatabase.length > 0) {
-              let arr = []
-              ratingDatabase.forEach((ratingData) => {
-                arr.push(ratingData.rating)
-              })
-              avgMovieRating = ((arr.reduce((a, b) => a + b, 0))/arr.length)
-              votesSum = arr.length
-            }
-                                 
-            if (randomMovieId == movie.id) {
-              randomMovieInfo = `<h2>${movie.original_title} (`+isNull(movie.release_date,'?').substring(0,4)+`)</h2>`
-              randomMovieInfo += `<p>Rating: ${avgMovieRating}</p>`
-              randomMovieInfo += `<p>${movie.overview}</p>`
-              getTrailer();
-            }
+          movieCounter++
 
-            const posterImage = movie.poster_path;
-            const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
-            const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
-            const movieRating = `<p>Rating: <strong>${avgMovieRating}</strong></p>`;
-            const movieVotes = `<p>Votes: <strong>${votesSum}</strong></p>`;
-            const movieCard = $(`<div class='movieCard' value='${movie.id}'>`).append(moviePoster);
 
-            $("#movies").append(
-              $(movieCard)
-                .append($(movieTitle)) // Creates a card with the poster img and title below it
-                .append(
-                  $('<div class="info flex space-between">')
-                    .append(movieRating)
-                    .append(movieVotes)
-                )
-            ); // Puts the rating score and count in a div blow the title
-          })
+          // Movie card variables
+          const posterImage = movie.poster_path;
+          const moviePoster = `<img class="poster" src="${image_url}${posterImage}">`;
+          const movieTitle = `<a href="/movies/${movie.id}" class="TitleStyle">${movie.original_title}</a>`;
+          const movieRating = `<p class='ratingSlot'>Rating: 'None'</p>`;
+          const movieVotes = `<p class='votesSlot'>Votes: 0</p>`;
+          const movieCard = $(`<div class='movieCard' value='${movie.id}'>`).append(moviePoster);
+
+          // Append movie card
+          $("#movies").append(
+            $(movieCard)
+              .append($(movieTitle)) // Creates a card with the poster img and title below it
+              .append(
+                $('<div class="info flex space-between">')
+                  .append(movieRating)
+                  .append(movieVotes)
+              )
+          ); // Puts the rating score and count in a div blow the title
       });
 
+      // if 
       if (movieCounter == 0) {
         $("#movies").append('<h3>Sorry, there are no movies that match your selection.</h3>')
       }
@@ -144,10 +167,8 @@ function getMovieInfo() {
     function (data) {
       let movieName = data.original_title;
       let movieYear = data.release_date.substring(0,4)
-      let movieRating = data.vote_average;
       let movieSynopsis = data.overview;
       $("#movieName").append(movieName+"("+ movieYear+")") ;
-      $("#movieRating").append(movieRating) ;
       $("#movieSynopsis").append(movieSynopsis) ;
     }
   )
@@ -162,12 +183,15 @@ function getMovieCast() {
 
   $.getJSON(`/api/castApi/${movieId}`, 
     function (data) {
-
-            // Just showing the first name for now. I will try get the first 5 actors names here
-            let movieCast = data.cast[0].name
-            //console.log (movieCast)
-    
-          $("#movieCast").append(movieCast) ;
+            // Showing the five first actor names
+            let movieCast = data.cast
+            let movieCastName = []
+            movieCast.forEach(movieCast5 => {
+              movieCastName.push(movieCast5.name)
+              })
+            const movieCastName1= movieCastName.slice(0,5)
+          const movieCastName2 = movieCastName1.join(", ")
+          $("#movieCast").append(movieCastName2) ;
 
       // Trying to get the director name here. Not working yet!
       // if (data.crew.length > 0) {
