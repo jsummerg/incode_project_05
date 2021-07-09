@@ -162,12 +162,15 @@ function getMovieCast() {
 
   $.getJSON(`/api/castApi/${movieId}`, 
     function (data) {
-
-            // Just showing the first name for now. I will try get the first 5 actors names here
-            let movieCast = data.cast[0].name
-            //console.log (movieCast)
-    
-          $("#movieCast").append(movieCast) ;
+            // Showing the five first actor names
+            let movieCast = data.cast
+            let movieCastName = []
+            movieCast.forEach(movieCast5 => {
+              movieCastName.push(movieCast5.name)
+              })
+            const movieCastName1= movieCastName.slice(0,5)
+          const movieCastName2 = movieCastName1.join(", ")
+          $("#movieCast").append(movieCastName2) ;
 
       // Trying to get the director name here. Not working yet!
       // if (data.crew.length > 0) {
