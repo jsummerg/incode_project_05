@@ -21,7 +21,7 @@
     <% arr.push(ratingData.rating) %>
 <% }) %>
 <% console.log(arr) %>
-<% let overAllRating = ((arr.reduce((a, b) => a + b, 0))/arr.length) %>
+<% let overAllRating = Math.round((arr.reduce((a, b) => a + b, 0))/arr.length) %>
 <div>
     <% if (overAllRating) { %>
         <p>Overall rating: <strong><%= overAllRating %></strong></p>
