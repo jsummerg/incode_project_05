@@ -1,3 +1,4 @@
+
 <div>
     <h2>Login</h2>
     <p>Enter your email and password</p>
@@ -12,6 +13,7 @@
         <label for='password'>Password:</label>
         <input id='password' name='password' type='password'>
     </div>
+    <input type="hidden" name="referer" value= <%= referer %> >
     <% if(message) { %>
     <p style='color:red'><%= message %></p>
     <% } %>

@@ -202,8 +202,12 @@ button {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 1%;
+    padding: 1% 0%;
 
+}
+
+#allGenres {
+    margin: 0 !important;
 }
 
 #genreHomeFilter {
