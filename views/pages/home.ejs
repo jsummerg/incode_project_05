@@ -1,26 +1,14 @@
 <section id='randomMovie'>
   <div id="hometrailer">
-    <img src="https://i.ytimg.com/vi/dF_I0f6sUuU/maxresdefault.jpg" alt="trailerPlaceholder" id="trailerPlaceholder">
-    <!-- REINSERT THIS WHEN SETTING UP VIDEO, REMEMBER TO TAKE OUT IMG
-       <iframe class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    -->
+    <iframe class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-  <div id=homeMovieDetails>
-    <h2>Movie Name (YEAR)</h2> <!-- also add in a herf to make name a link -->
-    <p>Rating: 
-      <i class="fas fa-grin-stars"></i>
-      <i class="fas fa-grin-stars"></i>
-      <i class="fas fa-grin-stars"></i>
-      <i class="far fa-grin-stars"></i>
-      <i class="far fa-grin-stars"></i></p>
-    <p>Movie synopsis "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-  </div>
+  <div id=homeMovieDetails></div>
 
 </section>
 <section id='genreSelect'>
-  <h3>Select a Genre:</h3>
-  <select class="search-select" id="genreHomeFilter">
-    <option value="0">All Genres</option>
-  </select>
+  <div class="btn-group-sm" role="group" id="genreHomeFilter">
+    <input type="checkbox" class="btn-check" name="genreCheckAll" id="genreCheckAll" autocomplete="off" value="0">
+    <label class="btn btn-outline-primary" id="allGenres" for="genreCheckAll">All</label>    
+  </div>
 </section>
 <section class="flex.wrap" id="movies"></section>
