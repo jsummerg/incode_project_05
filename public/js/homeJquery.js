@@ -48,10 +48,6 @@ function getPopularMovies() {
     
     $("#movies").empty()
     $.getJSON(`/api/popular-movies${genreList}`, function (data) {
-      $.getJSON(`/api/movie-ratings`, function (consoling) { 
-        //console.log(consoling)
-      })
-   
       // selects a random movie from the return list to display on the trailer
       if (data.results.length > 0) {
         const i = Math.floor(Math.random() * data.results.length)-1

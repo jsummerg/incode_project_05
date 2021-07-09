@@ -9,6 +9,7 @@ const { redirectToHome } = require('../middlewear')
 router.get('/', redirectToHome, (req, res) => {
     res.render('pages/login', {
         message: req.query.message,
+        referer:req.headers.referer,
         req: req,
         title: 'Login',
     })
@@ -33,7 +34,7 @@ router.post('/', (req, res) => {
                 if (result) {
                     // if successful, create session and redirect
                     req.session.user_id = existingUser.user_id
-                    res.redirect('back')
+                    res.redirect(req.body.referer)
                 } 
                 else {
                     return res.redirect('/login?message=Incorrect%20login%20details.')
