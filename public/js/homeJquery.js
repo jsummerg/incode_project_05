@@ -68,7 +68,7 @@ function GetRatings() {
         
         // Random trailer picker
           if (randomMovieId == movie.id) {
-            randomMovieInfo = `<h2>${movie.original_title} (`+isNull(movie.release_date,'?').substring(0,4)+`)</h2>`
+            randomMovieInfo = `<a href="/movies/${movie.id}"><h2>${movie.original_title} (`+isNull(movie.release_date,'?').substring(0,4)+`)</h2></a>`
             randomMovieInfo += `<p>Rating: ${avgMovieRating}</p>`
             randomMovieInfo += `<p>${movie.overview}</p>`
             getTrailer();

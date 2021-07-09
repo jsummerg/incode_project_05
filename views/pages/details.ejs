@@ -3,18 +3,24 @@
     <% arrRating.push(ratingData.rating) %>
 <% }) %>
 <% let overAllRating = Math.round((arrRating.reduce((a, b) => a + b, 0))/arrRating.length) %>
-
 <% let arrUserRating = [] %>
 <% ratings.forEach((userRating) => { %>
     <% arrUserRating.push(userRating.rating) %>
 <% }) %>
+
+
 <section id='movieHeading'>
     <h1 id='movieName'> </h1>
     <div class='movieRating'></div>
-    <div class="stars-inner"></div>
-    <div class="stars-outer"></div>
+    <div class="stars-outer">
+        <div class="stars-inner" style="width: <%=overAllRating*10 %>%;"></div>
+      </div>
 </section>
-
+<script> 
+    
+    //document.getElementById('abcde').style.width = starPercentage;    
+</script>
+    
 <section id='movieTrailer'>
     <iframe id="detailsVideo" class="movieVideo" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <p id='movieSynopsis'></p>

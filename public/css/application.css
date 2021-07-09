@@ -153,7 +153,6 @@ a[title]:hover::after {
     font-size: 20px;
   }
 
-
 /* FORM STYLE */
 
 label, input {
@@ -410,29 +409,30 @@ cursor: pointer;
 
 /* DETAILS RAITINGS */
 .stars-outer {
-    position: relative;
     display: inline-block;
-}
-.stars-inner {
+    position: relative;
+    font-family: FontAwesome;
+    font-size: 28px;
+    color: rgb(22 105 122 / 30%);
+  }
+   
+  .stars-outer::before {
+    content: '\f599 \f599 \f599 \f599 \f599';
+  }  
+   
+  .stars-inner {
     position: absolute;
     top: 0;
     left: 0;
     white-space: nowrap;
     overflow: hidden;
-    width: 0;
-}
-.stars-outer::before {
-    content: '\f587 \f587 \f587 \f587 \f587';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: #ccc;
-}
-.stars-inner::before {
-    content: '\f587 \f587 \f587 \f587 \f587';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: #f8ce0b;
-}
+    width: 0; 
+  }
+   
+  .stars-inner::before {
+    content: '\f599 \f599 \f599 \f599 \f599';
+    color: #16697A;
+  }
 
 #movieCast {
     margin: 2%;
